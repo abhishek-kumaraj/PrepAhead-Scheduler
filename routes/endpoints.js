@@ -1,13 +1,15 @@
 const express = require('express')
 const router = express.Router();
+const Task = require('../model/model')
 
 router.get('/',(req,res)=>{
     res.send('All task');
 })
 
 
-router.post('/',(req,res)=>{
-    res.send('A new task has been created');
+router.post('/',async (req,res)=>{
+    const singleTask = await Task.create(req.body);
+    res.status(201).json({singleTask})
 })
 
 
